@@ -1,13 +1,12 @@
-import { useAuth } from "@/hooks/useAuth";
+import AdminSidebar from "@/components/admin/Sidebar/Siderbar";
 
-const Dashboard = () => {
-  const { isAuthenticated } = useAuth();
-
-  if (!isAuthenticated) return null;
-
+const Dashboard: React.FC = () => {
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+    <div className="flex">
+      <AdminSidebar />
+      <main className="ml-64 p-6 w-full">
+        <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+      </main>
     </div>
   );
 };
