@@ -57,7 +57,7 @@ const AdminSidebar = () => {
           icon={<FiUsers />}
           isOpen={isOpen}
           subItems={[
-            { label: "Người dùng", href: "/admin/accounts/users" },
+            { label: "Người dùng", href: "/admin/customer/manage" },
             { label: "Cửa hàng", href: "/admin/accounts/stores" },
             { label: "Quản trị", href: "/admin/admin/manage" },
           ]}
