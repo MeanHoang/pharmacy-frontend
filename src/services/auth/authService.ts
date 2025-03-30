@@ -7,6 +7,6 @@ export const loginAdmin = async (username: string, password: string) => {
     username,
     password,
   });
-  console.log(">>Check res.data: ", res.data);
+  // console.log(">>Check res.data: ", res.data);
   return res.data;
 };

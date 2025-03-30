@@ -3,7 +3,7 @@ import { FiUser, FiLock } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { loginAdmin } from "@/services/authService";
+import { loginAdmin } from "@/services/auth/authService";
 
 const Login: React.FC = () => {
   const router = useRouter();

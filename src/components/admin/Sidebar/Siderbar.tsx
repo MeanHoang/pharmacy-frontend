@@ -59,7 +59,7 @@ const AdminSidebar = () => {
           subItems={[
             { label: "Người dùng", href: "/admin/accounts/users" },
             { label: "Cửa hàng", href: "/admin/accounts/stores" },
-            { label: "Quản trị", href: "/admin/accounts/admins" },
+            { label: "Quản trị", href: "/admin/admin/manage" },
           ]}
           activeMenu={activeMenu}
           setActiveMenu={setActiveMenu}
