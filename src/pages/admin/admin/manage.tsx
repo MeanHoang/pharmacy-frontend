@@ -18,6 +18,12 @@ const ManageAdmin: React.FC = () => {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editedAdmin, setEditedAdmin] = useState<Partial<Admin>>({});
 
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [newAdmin, setNewAdmin] = useState<Partial<Admin>>({
+    username: "",
+    fullname: "",
+  });
+
   useEffect(() => {
     fetchAdmins();
   }, [page, search]);
@@ -96,6 +102,22 @@ const ManageAdmin: React.FC = () => {
       toast.success("Mật khẩu đã được đặt lại!");
     } catch (error) {
       toast.error("Đặt lại mật khẩu thất bại!");
+    }
+  };
+
+  const handleAddAdmin = async () => {
+    try {
+      if (!newAdmin.username || !newAdmin.fullname) {
+        toast.error("Vui lòng nhập đầy đủ thông tin!");
+        return;
+      }
+      await AdminService.createAdmin(newAdmin);
+      fetchAdmins();
+      toast.success("Thêm tài khoản thành công!");
+      setShowModal(false);
+      setNewAdmin({ username: "", fullname: "" });
+    } catch (error) {
+      toast.error("Thêm tài khoản thất bại!");
     }
   };
 
@@ -243,6 +265,63 @@ const ManageAdmin: React.FC = () => {
             setCurrentPage={setPage}
           />
         </div>
+
+        <div className="mt-4 flex justify-left">
+          <button
+            onClick={() => setShowModal(true)}
+            className="bg-green-600 text-white px-4 py-2 rounded"
+          >
+            Thêm tài khoản
+          </button>
+        </div>
+        {showModal && (
+          <div className="fixed inset-0 flex items-center justify-center bg-transparent">
+            <div className="bg-white p-6 rounded shadow-lg">
+              <h2 className="text-xl font-semibold mb-4">Thêm tài khoản mới</h2>
+              <input
+                type="text"
+                placeholder="Tên đăng nhập"
+                className="w-full mb-2 p-2 border rounded"
+                value={newAdmin.username}
+                onChange={(e) =>
+                  setNewAdmin({ ...newAdmin, username: e.target.value })
+                }
+              />
+              <input
+                type="text"
+                placeholder="Họ tên"
+                className="w-full mb-2 p-2 border rounded"
+                value={newAdmin.fullname}
+                onChange={(e) =>
+                  setNewAdmin({ ...newAdmin, fullname: e.target.value })
+                }
+              />
+              <input
+                type="text"
+                placeholder="Mật khẩu"
+                className="w-full mb-2 p-2 border rounded"
+                value={newAdmin.password}
+                onChange={(e) =>
+                  setNewAdmin({ ...newAdmin, password: e.target.value })
+                }
+              />
+              <div className="flex justify-end gap-2">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="bg-gray-400 text-white px-4 py-2 rounded"
+                >
+                  Hủy
+                </button>
+                <button
+                  onClick={handleAddAdmin}
+                  className="bg-blue-500 text-white px-4 py-2 rounded"
+                >
+                  Thêm
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ const AdminService = {
     }
   },
 
-  createAdmin: async (adminData: Admin) => {
+  createAdmin: async (adminData: Partial<Admin>) => {
     try {
       const response = await apiClient.post("/create", adminData);
       return response.data;

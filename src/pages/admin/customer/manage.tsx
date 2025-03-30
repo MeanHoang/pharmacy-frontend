@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 import Pagination from "@/components/admin/Pagination/Pagination";
 import AdminSidebar from "@/components/admin/Sidebar/Siderbar";
-import CustomerService from "@/services/customer/customerService";
+import CustomerService from "@/services/admin/customerService";
 import { Customer } from "@/types/customer";
 
 const ManageCustomer: React.FC = () => {
@@ -172,13 +172,13 @@ const ManageCustomer: React.FC = () => {
                       onClick={() => resetPassword(customer.id)}
                       className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
                     >
-                      Đặt lại MK
+                      Đặt lại mật khẩu
                     </button>
 
                     {/* Xem chi tiết */}
                     <button
                       onClick={() =>
-                        router.push(`/admin/customer/detail/${customer.id}`)
+                        router.push(`/admin/customers/detail/${customer.id}`)
                       }
                       className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
                     >
