@@ -275,7 +275,7 @@ const ManageAdmin: React.FC = () => {
           </button>
         </div>
         {showModal && (
-          <div className="fixed inset-0 flex items-center justify-center bg-transparent">
+          <div className="fixed inset-0 flex items-center justify-center bg-opacity-500">
             <div className="bg-white p-6 rounded shadow-lg">
               <h2 className="text-xl font-semibold mb-4">Thêm tài khoản mới</h2>
               <input

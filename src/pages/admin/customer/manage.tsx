@@ -178,7 +178,7 @@ const ManageCustomer: React.FC = () => {
                     {/* Xem chi tiết */}
                     <button
                       onClick={() =>
-                        router.push(`/admin/customers/detail/${customer.id}`)
+                        router.push(`/admin/customer/${customer.id}`)
                       }
                       className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
                     >

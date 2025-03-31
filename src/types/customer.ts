@@ -1,3 +1,6 @@
+import { Address } from "./address";
+import { Order } from "./order";
+
 export interface Customer {
   id: number;
   email: string;
@@ -12,4 +15,6 @@ export interface Customer {
   is_active: boolean;
   created_at: string;
   updated_at?: string;
+  addresses: Address[];
+  orders: Order[];
 }

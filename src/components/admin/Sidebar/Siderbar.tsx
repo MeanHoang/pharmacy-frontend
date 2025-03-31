@@ -58,7 +58,7 @@ const AdminSidebar = () => {
           isOpen={isOpen}
           subItems={[
             { label: "Người dùng", href: "/admin/customer/manage" },
-            { label: "Cửa hàng", href: "/admin/accounts/stores" },
+            { label: "Cửa hàng", href: "/admin/store/manage" },
             { label: "Quản trị", href: "/admin/admin/manage" },
           ]}
           activeMenu={activeMenu}
@@ -69,20 +69,20 @@ const AdminSidebar = () => {
           icon={<FiBox />}
           isOpen={isOpen}
           subItems={[
-            { label: "Danh mục", href: "/admin/products/categories" },
-            { label: "Sản phẩm", href: "/admin/products/items" },
+            { label: "Danh mục", href: "/admin/category/manage" },
+            { label: "Sản phẩm", href: "/admin/product/manage" },
           ]}
           activeMenu={activeMenu}
           setActiveMenu={setActiveMenu}
         />
         <SidebarItem
-          href="/admin/orders"
+          href="/admin/order/manage"
           icon={<FiShoppingCart />}
           label="Quản lý đơn hàng"
           isOpen={isOpen}
         />
         <SidebarItem
-          href="/admin/payments"
+          href="/admin/payment/manage"
           icon={<MdOutlinePayments />}
           label="Quản lý thanh toán"
           isOpen={isOpen}
@@ -94,7 +94,7 @@ const AdminSidebar = () => {
           isOpen={isOpen}
         />
         <SidebarItem
-          href="/admin/reports"
+          href="/admin/report"
           icon={<FiBarChart2 />}
           label="Thống kê & Báo cáo"
           isOpen={isOpen}
