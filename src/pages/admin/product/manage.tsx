@@ -195,6 +195,13 @@ const ManageProduct: React.FC = () => {
             setCurrentPage={setPage}
           />
         </div>
+
+        <button
+          onClick={() => router.push("/admin/product/add")}
+          className="bg-green-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-green-600"
+        >
+          Thêm sản phẩm
+        </button>
       </div>
     </div>
   );

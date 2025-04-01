@@ -42,9 +42,33 @@ const ProductService = {
     }
   },
 
-  createProduct: async (productData: Partial<Product>) => {
+  createProduct: async (productData: Partial<Product>, imageFile?: File) => {
+    const formData = new FormData();
+
+    // Ensure `key` is a valid property of `Product`
+    for (const key in productData) {
+      if (productData.hasOwnProperty(key)) {
+        // Kiểm tra rằng key là khóa hợp lệ của Product
+        if (key in productData) {
+          formData.append(
+            key as keyof Product,
+            productData[key] as string | Blob
+          );
+        }
+      }
+    }
+
+    // Append the image file to formData if it's provided
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
     try {
-      const response = await apiClient.post("/create", productData);
+      const response = await apiClient.post("/create", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       return response.data;
     } catch (error) {
       console.error("Error creating product:", error);
