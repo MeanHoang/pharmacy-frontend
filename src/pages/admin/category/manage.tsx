@@ -130,33 +130,36 @@ const ManageCategory: React.FC = () => {
           Quản lý Danh Mục
         </h1>
 
-        <div className="flex items-center gap-4 mb-4">
-          <div className="flex items-center gap-2 px-4 py-2 shadow-md rounded-full bg-white w-80">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="relative flex items-center bg-white shadow-md rounded-lg p-2 w-70">
             <Search className="text-gray-500 w-5 h-5" />
             <input
               type="text"
               placeholder="Tìm kiếm theo tên danh mục..."
-              className="w-full bg-transparent outline-none text-gray-700"
+              className="w-full bg-transparent outline-none text-gray-700 ml-2"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
 
-          <select
-            value={filterSales === undefined ? "" : String(filterSales)}
-            onChange={(e) => {
-              const value = e.target.value;
-              if (value === "") {
-                setFilterSales(undefined);
-              } else {
-                setFilterSales(value === "true" ? true : false);
-              }
-            }}
-          >
-            <option value="">Tất cả</option>
-            <option value="true">Đang bán</option>
-            <option value="false">Chưa bán</option>
-          </select>
+          <div className="relative bg-white shadow-md rounded-lg p-2">
+            <select
+              value={filterSales === undefined ? "" : String(filterSales)}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === "") {
+                  setFilterSales(undefined);
+                } else {
+                  setFilterSales(value === "true");
+                }
+              }}
+              className="bg-transparent outline-none text-gray-700"
+            >
+              <option value="">Tất cả</option>
+              <option value="true">Đang bán</option>
+              <option value="false">Chưa bán</option>
+            </select>
+          </div>
         </div>
 
         {/* {Table} */}
