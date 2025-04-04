@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Search } from "lucide-react";
 
+import IsSalesDropdown from "@/components/admin/Filter/IsSalesDropdown";
 import Pagination from "@/components/admin/Pagination/Pagination";
 import AdminSidebar from "@/components/admin/Sidebar/Siderbar";
 import CategoryService from "@/services/admin/categoryService";
@@ -142,23 +143,12 @@ const ManageCategory: React.FC = () => {
             />
           </div>
 
-          <div className="relative bg-white shadow-md rounded-lg p-2">
-            <select
-              value={filterSales === undefined ? "" : String(filterSales)}
-              onChange={(e) => {
-                const value = e.target.value;
-                if (value === "") {
-                  setFilterSales(undefined);
-                } else {
-                  setFilterSales(value === "true");
-                }
-              }}
-              className="bg-transparent outline-none text-gray-700"
-            >
-              <option value="">Tất cả</option>
-              <option value="true">Đang bán</option>
-              <option value="false">Chưa bán</option>
-            </select>
+          {/* Lọc sản phẩm theo trạng thái bán */}
+          <div className="flex gap-4 items-center">
+            <IsSalesDropdown
+              filterSales={filterSales}
+              setFilterSales={setFilterSales}
+            />
           </div>
         </div>
 

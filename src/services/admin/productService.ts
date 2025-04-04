@@ -25,7 +25,8 @@ const ProductService = {
     page: number = 1,
     limit: number = 5,
     search: string = "",
-    isSales?: boolean
+    isSales?: boolean,
+    categories?: number[]
   ) => {
     try {
       const params: any = { page, limit, search };
@@ -34,6 +35,11 @@ const ProductService = {
       if (isSales !== undefined) {
         params.isSales = isSales ? "1" : "0";
       }
+
+      if (categories && categories.length > 0) {
+        params.categories = categories.join(",");
+      }
+
       const response = await apiClient.get("/", { params });
 
       return response.data.data;

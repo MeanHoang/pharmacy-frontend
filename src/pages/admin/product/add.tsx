@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AdminSidebar from "@/components/admin/Sidebar/Siderbar";
-import CategoryDropdown from "@/components/admin/Dropdown/CategoryDropdown";
+import CategoryDropdown from "@/components/admin/Filter/CategoryDropdown";
 import ProductService from "@/services/admin/productService";
 import { Product } from "@/types/product";
 import { toast } from "react-toastify";
@@ -198,6 +198,44 @@ const AddProduct: React.FC = () => {
                 id="discount"
                 name="discount"
                 value={formData.discount}
+                onChange={handleChange}
+                className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Nhập giảm giá"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col">
+              <label
+                htmlFor="stock"
+                className="text-lg font-medium text-gray-700"
+              >
+                Xuất xứ
+              </label>
+              <input
+                type="text"
+                id="origin"
+                name="origin"
+                value={formData.origin}
+                onChange={handleChange}
+                className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Nhập nơi xuất xứ"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label
+                htmlFor="text"
+                className="text-lg font-medium text-gray-700"
+              >
+                Nhà sản xuất
+              </label>
+              <input
+                type="text"
+                id="brand"
+                name="brand"
+                value={formData.brand}
                 onChange={handleChange}
                 className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Nhập giảm giá"

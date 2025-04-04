@@ -3,7 +3,7 @@ import CategoryService from "@/services/admin/categoryService";
 import { Category } from "@/types/category";
 
 interface CategoryDropdownProps {
-  isSales: number;
+  isSales: boolean | undefined;
   onCategoryChange: (categoryId: number) => void;
 }
 
@@ -19,7 +19,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
     const fetchCategories = async () => {
       try {
         const data = await CategoryService.getAllCategories(1, 10, "", isSales);
-        setCategories(data.data); // Assuming `data.data` contains the categories
+        setCategories(data.data);
       } catch (error) {
         setError("Error fetching categories");
       } finally {

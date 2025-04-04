@@ -24,7 +24,7 @@ const CategoryService = {
     page: number = 1,
     limit: number = 10,
     search: string = "",
-    isSales: number | undefined
+    isSales?: boolean
   ) => {
     try {
       const params: any = { page, limit, search };

@@ -88,7 +88,8 @@ const ManageAdmin: React.FC = () => {
     if (!window.confirm(`Bạn có chắc chắn muốn xóa tài khoản #${id}?`)) return;
     try {
       await AdminService.deleteAdmin(id);
-      setAdmins((prevAdmins) => prevAdmins.filter((admin) => admin.id !== id));
+      // setAdmins((prevAdmins) => prevAdmins.filter((admin) => admin.id !== id));
+      fetchAdmins();
       toast.success("Xóa tài khoản thành công!");
     } catch (error) {
       toast.error("Xóa tài khoản thất bại!");

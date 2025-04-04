@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Search, Filter } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+import IsSalesDropdown from "@/components/admin/Filter/IsSalesDropdown";
+import CategorySelect from "@/components/admin/Filter/CategorySelect";
 import Pagination from "@/components/admin/Pagination/Pagination";
 import AdminSidebar from "@/components/admin/Sidebar/Siderbar";
 import ProductService from "@/services/admin/productService";
@@ -18,12 +20,13 @@ const ManageProduct: React.FC = () => {
   const [filterSales, setFilterSales] = useState<boolean | undefined>(
     undefined
   );
+  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
 
   const router = useRouter();
 
   useEffect(() => {
     fetchProducts();
-  }, [page, search, filterSales]);
+  }, [page, search, filterSales, selectedCategories]);
 
   const fetchProducts = async () => {
     try {
@@ -31,7 +34,8 @@ const ManageProduct: React.FC = () => {
         page,
         5,
         search,
-        filterSales
+        filterSales,
+        selectedCategories
       );
       setProducts(response.data || []);
       setTotalPages(response.totalPages || 1);
@@ -71,7 +75,9 @@ const ManageProduct: React.FC = () => {
       }
     }
   };
-
+  const handleCategoryChange = (categoryIds: number[]) => {
+    setSelectedCategories(categoryIds);
+  };
   return (
     <div className="flex min-h-screen bg-gray-100">
       <AdminSidebar />
@@ -81,6 +87,7 @@ const ManageProduct: React.FC = () => {
         </h1>
 
         <div className="flex items-center gap-4 mb-6">
+          {/* Ô tìm kiếm */}
           <div className="relative flex items-center bg-white shadow-md rounded-lg p-2 w-70">
             <Search className="text-gray-500 w-5 h-5" />
             <input
@@ -92,23 +99,20 @@ const ManageProduct: React.FC = () => {
             />
           </div>
 
-          <div className="relative bg-white shadow-md rounded-lg p-2">
-            <select
-              value={filterSales === undefined ? "" : String(filterSales)}
-              onChange={(e) => {
-                const value = e.target.value;
-                if (value === "") {
-                  setFilterSales(undefined);
-                } else {
-                  setFilterSales(value === "true");
-                }
-              }}
-              className="bg-transparent outline-none text-gray-700"
-            >
-              <option value="">Tất cả</option>
-              <option value="true">Đang bán</option>
-              <option value="false">Chưa bán</option>
-            </select>
+          {/* Lọc trạng thái bán */}
+          <div className="flex gap-4 items-center">
+            <IsSalesDropdown
+              filterSales={filterSales}
+              setFilterSales={setFilterSales}
+            />
+          </div>
+
+          {/* Danh mục sản phẩm */}
+          <div className="w-96">
+            <CategorySelect
+              isSales={true}
+              onCategoryChange={handleCategoryChange}
+            />
           </div>
         </div>
 
