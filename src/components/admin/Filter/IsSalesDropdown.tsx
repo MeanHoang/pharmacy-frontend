@@ -10,7 +10,7 @@ const IsSalesDropdown: React.FC<IsSalesDropdownProps> = ({
   setFilterSales,
 }) => {
   return (
-    <div className="relative bg-white shadow-md rounded-lg p-2 w-36">
+    <div className="relative bg-white shadow-md rounded-lg p-2 w-25">
       <select
         value={filterSales === undefined ? "" : String(filterSales)}
         onChange={(e) => {

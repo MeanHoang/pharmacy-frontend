@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+import SearchBar from "@/components/admin/Search/SearchBar";
 import Pagination from "@/components/admin/Pagination/Pagination";
 import AdminSidebar from "@/components/admin/Sidebar/Siderbar";
+
 import CustomerService from "@/services/admin/customerService";
 import { Customer } from "@/types/customer";
 
@@ -85,15 +86,12 @@ const ManageCustomer: React.FC = () => {
           Quản lý Khách hàng
         </h1>
 
-        {/* Ô tìm kiếm */}
-        <div className="mb-4 flex items-center gap-2 px-4 py-2 shadow-md rounded-full bg-white w-80">
-          <Search className="text-gray-500 w-5 h-5" />
-          <input
-            type="text"
-            placeholder="Tìm kiếm theo tên, email, SDT..."
-            className="w-full bg-transparent outline-none text-gray-700 placeholder-gray-400 focus:text-black"
+        {/* {Search Bar} */}
+        <div className="flex items-center gap-4 mb-6">
+          <SearchBar
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={setSearch}
+            placeholder="Tìm kiếm theo email, tên người dùng..."
           />
         </div>
 

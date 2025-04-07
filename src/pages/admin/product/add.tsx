@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 const AddProduct: React.FC = () => {
   const [formData, setFormData] = useState<Partial<Product>>({
     name: "",
+    description: "",
     price: 0,
     stock: 0,
     discount: 0,
@@ -82,26 +83,204 @@ const AddProduct: React.FC = () => {
     }
   };
 
+  const handleCancel = () => {
+    router.push("/admin/product/manage");
+  };
+
   return (
     <div className="flex">
       <AdminSidebar />
-      <main className="ml-1 p-8 w-full bg-gray-50">
-        <h1 className="text-3xl font-semibold text-gray-800 mb-6">
-          Thêm sản phẩm
-        </h1>
+      <div className="flex-1 p-6">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+          Thêm sản phẩm mới
+        </h2>
         <form
           onSubmit={handleSubmit}
-          className="space-y-6 bg-white p-6 rounded-lg shadow-lg"
+          className="grid grid-cols-1 md:grid-cols-6 gap-8"
         >
-          {/* Xem trước ảnh */}
-          <div className="flex flex-col mb-4">
+          {/* === CỘT 1 === */}
+          <div className="space-y-4 col-span-4">
+            {/* Hàng 1 */}
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block font-medium text-gray-700"
+                >
+                  Tên sản phẩm *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  placeholder="Nhập tên sản phẩm"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="brand"
+                  className="block font-medium text-gray-700"
+                >
+                  Nhãn hàng
+                </label>
+                <input
+                  type="text"
+                  id="brand"
+                  name="brand"
+                  value={formData.brand}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  placeholder="Nhập tên nhãn hàng"
+                />
+              </div>
+            </div>
+
+            {/* Hàng 2 */}
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label
+                  htmlFor="description"
+                  className="block font-medium text-gray-700"
+                >
+                  Mô tả
+                </label>
+                <input
+                  type="text"
+                  id="description"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  placeholder="Nhập mô tả ngắn"
+                />
+              </div>
+            </div>
+
+            {/* Hàng 3 */}
+            <div className="grid grid-cols-3 gap-4">
+              <div>
+                <label
+                  htmlFor="origin"
+                  className="block font-medium text-gray-700"
+                >
+                  Xuất xứ
+                </label>
+                <input
+                  type="text"
+                  id="origin"
+                  name="origin"
+                  value={formData.origin}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  placeholder="Nhập xuất xứ"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="packaging"
+                  className="block font-medium text-gray-700"
+                >
+                  Dạng đóng gói
+                </label>
+                <input
+                  type="text"
+                  id="packaging"
+                  name="packaging"
+                  value={formData.packaging}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  placeholder="Nhập dạng đóng gói"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="specification"
+                  className="block font-medium text-gray-700"
+                >
+                  Quy cách
+                </label>
+                <input
+                  type="text"
+                  id="specification"
+                  name="specification"
+                  value={formData.specification}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  placeholder="Nhập quy cách"
+                />
+              </div>
+            </div>
+
+            {/* Hàng 4 */}
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label
+                  htmlFor="indications"
+                  className="block font-medium text-gray-700"
+                >
+                  Chỉ định sử dụng
+                </label>
+                <textarea
+                  id="indications"
+                  name="indications"
+                  value={formData.indications}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  placeholder="Nhập chỉ định sử dụng"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="instructions"
+                  className="block font-medium text-gray-700"
+                >
+                  Hướng dẫn sử dụng
+                </label>
+                <textarea
+                  id="instructions"
+                  name="instructions"
+                  value={formData.instructions}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  placeholder="Nhập hướng dẫn sử dụng"
+                />
+              </div>
+            </div>
+
+            {/* Hàng 6 */}
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label
+                  htmlFor="note"
+                  className="block font-medium text-gray-700"
+                >
+                  Thành phần thuốc
+                </label>
+                <textarea
+                  id="ingredients"
+                  name="ingredients"
+                  value={formData.ingredients}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  placeholder="Nhập thành phần thuốc"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* === CỘT 2 === */}
+          <div className="flex flex-col mb-4 col-span-2 space-y-4">
             <label
               htmlFor="image"
               className="text-lg font-medium text-gray-700"
             >
               Hình ảnh sản phẩm
             </label>
-            <div className="relative">
+            <div className="flex justify-center items-center mb-4 relative">
               <input
                 type="file"
                 id="image"
@@ -109,7 +288,7 @@ const AddProduct: React.FC = () => {
                 onChange={handleImageChange}
                 className="absolute inset-0 opacity-0 cursor-pointer"
               />
-              <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-300 bg-gray-200 flex items-center justify-center">
+              <div className="w-60 h-60 rounded-lg overflow-hidden border-1 border-gray-300 bg-gray-200 flex items-center justify-center">
                 {imagePreview ? (
                   <img
                     src={imagePreview}
@@ -125,256 +304,114 @@ const AddProduct: React.FC = () => {
                 )}
               </div>
             </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex flex-col">
-              <label
-                htmlFor="name"
-                className="text-base font-normal text-gray-700"
-              >
-                Tên sản phẩm *
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="mt-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Nhập tên sản phẩm"
-                required
-              />
+            {/* Hàng 2 */}
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label
+                  htmlFor="category"
+                  className="block font-medium text-gray-700"
+                >
+                  Danh mục sản phẩm
+                </label>
+                <CategoryDropdown
+                  onCategoryChange={handleCategoryChange}
+                  isSales={true}
+                />
+              </div>
             </div>
-
-            <div className="flex flex-col">
-              <label
-                htmlFor="price"
-                className="text-base font-normal text-gray-700"
-              >
-                Giá tiền *
-              </label>
-              <input
-                type="number"
-                id="price"
-                name="price"
-                value={formData.price}
-                onChange={handleChange}
-                className="mt-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Nhập giá tiền"
-                required
-              />
+            {/* Hàng 3 */}
+            <div className="grid grid-cols-3 gap-4">
+              <div>
+                <label
+                  htmlFor="price"
+                  className="block font-medium text-gray-700"
+                >
+                  Giá tiền
+                </label>
+                <input
+                  type="number"
+                  id="price"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  placeholder="0"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="stock"
+                  className="block font-medium text-gray-700"
+                >
+                  Số lượng
+                </label>
+                <input
+                  type="number"
+                  id="stock"
+                  name="stock"
+                  value={formData.stock}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="discount"
+                  className="block font-medium text-gray-700"
+                >
+                  Giảm giá (%)
+                </label>
+                <input
+                  type="number"
+                  id="discount"
+                  name="discount"
+                  value={formData.discount}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                />
+              </div>
             </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex flex-col">
-              <label
-                htmlFor="stock"
-                className="text-lg font-medium text-gray-700"
-              >
-                Số lượng
-              </label>
-              <input
-                type="number"
-                id="stock"
-                name="stock"
-                value={formData.stock}
-                onChange={handleChange}
-                className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Nhập số lượng"
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label
-                htmlFor="discount"
-                className="text-lg font-medium text-gray-700"
-              >
-                Giảm giá (%)
-              </label>
-              <input
-                type="number"
-                id="discount"
-                name="discount"
-                value={formData.discount}
-                onChange={handleChange}
-                className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Nhập giảm giá"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex flex-col">
-              <label
-                htmlFor="stock"
-                className="text-lg font-medium text-gray-700"
-              >
-                Xuất xứ
-              </label>
-              <input
-                type="text"
-                id="origin"
-                name="origin"
-                value={formData.origin}
-                onChange={handleChange}
-                className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Nhập nơi xuất xứ"
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label
-                htmlFor="text"
-                className="text-lg font-medium text-gray-700"
-              >
-                Nhà sản xuất
-              </label>
-              <input
-                type="text"
-                id="brand"
-                name="brand"
-                value={formData.brand}
-                onChange={handleChange}
-                className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Nhập giảm giá"
-              />
+            {/* Hàng 4 */}
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label
+                  htmlFor="note"
+                  className="block font-medium text-gray-700"
+                >
+                  Lưu ý
+                </label>
+                <textarea
+                  id="note"
+                  name="note"
+                  value={formData.note}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  placeholder="Nhập lưu ý"
+                />
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex flex-col">
-              <label
-                htmlFor="packaging"
-                className="text-lg font-medium text-gray-700"
-              >
-                Dạng đóng gói
-              </label>
-              <input
-                type="text"
-                id="packaging"
-                name="packaging"
-                value={formData.packaging}
-                onChange={handleChange}
-                className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Nhập dạng đóng gói"
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label
-                htmlFor="specification"
-                className="text-lg font-medium text-gray-700"
-              >
-                Quy cách
-              </label>
-              <input
-                type="text"
-                id="specification"
-                name="specification"
-                value={formData.specification}
-                onChange={handleChange}
-                className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Nhập quy cách"
-              />
-            </div>
-          </div>
-
-          {/* Các trường nhập liệu dạng textarea */}
-          <div className="flex flex-col">
-            <label
-              htmlFor="indications"
-              className="text-lg font-medium text-gray-700"
-            >
-              Chỉ định sử dụng
-            </label>
-            <textarea
-              id="indications"
-              name="indications"
-              value={formData.indications}
-              onChange={handleChange}
-              className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Nhập chỉ định sử dụng"
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <label
-              htmlFor="instructions"
-              className="text-lg font-medium text-gray-700"
-            >
-              Hướng dẫn sử dụng
-            </label>
-            <textarea
-              id="instructions"
-              name="instructions"
-              value={formData.instructions}
-              onChange={handleChange}
-              className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Nhập hướng dẫn sử dụng"
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <label
-              htmlFor="ingredients"
-              className="text-lg font-medium text-gray-700"
-            >
-              Thành phần thuốc
-            </label>
-            <textarea
-              id="ingredients"
-              name="ingredients"
-              value={formData.ingredients}
-              onChange={handleChange}
-              className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Nhập thành phần thuốc"
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <label htmlFor="note" className="text-lg font-medium text-gray-700">
-              Lưu ý
-            </label>
-            <textarea
-              id="note"
-              name="note"
-              value={formData.note}
-              onChange={handleChange}
-              className="mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Nhập lưu ý"
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <label
-              htmlFor="category"
-              className="text-lg font-medium text-gray-700"
-            >
-              Danh mục
-            </label>
-            <CategoryDropdown
-              onCategoryChange={handleCategoryChange}
-              isSales={1}
-            />
-          </div>
-
-          <div className="mt-6">
+          {/* Button */}
+          <div className="col-span-1 md:col-span-2 flex justify-between space-x-4">
             <button
               type="submit"
-              className={`w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                isSubmitting
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-blue-500 hover:bg-blue-600"
-              }`}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-lg"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Đang thêm sản phẩm..." : "Thêm Sản Phẩm"}
+              {isSubmitting ? "Đang thêm..." : "Thêm sản phẩm"}
+            </button>
+            <button
+              type="button"
+              className="w-full bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg"
+              onClick={handleCancel}
+            >
+              Hủy
             </button>
           </div>
         </form>
-      </main>
+      </div>
     </div>
   );
 };

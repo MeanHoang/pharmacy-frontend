@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Search } from "lucide-react";
 
+import SearchBar from "@/components/admin/Search/SearchBar";
 import IsSalesDropdown from "@/components/admin/Filter/IsSalesDropdown";
 import Pagination from "@/components/admin/Pagination/Pagination";
 import AdminSidebar from "@/components/admin/Sidebar/Siderbar";
@@ -132,16 +133,11 @@ const ManageCategory: React.FC = () => {
         </h1>
 
         <div className="flex items-center gap-4 mb-6">
-          <div className="relative flex items-center bg-white shadow-md rounded-lg p-2 w-70">
-            <Search className="text-gray-500 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Tìm kiếm theo tên danh mục..."
-              className="w-full bg-transparent outline-none text-gray-700 ml-2"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
+          <SearchBar
+            value={search}
+            onChange={setSearch}
+            placeholder="Tìm kiếm theo tên danh mục..."
+          />
 
           {/* Lọc sản phẩm theo trạng thái bán */}
           <div className="flex gap-4 items-center">

@@ -19,8 +19,9 @@ export interface Product {
   category_id: number;
   image: string;
   is_sales: boolean;
+  sold_quantity: number;
   created_at: string;
   updated_at?: string;
-  ProductImage?: ProductImage[];
+  productImage?: ProductImage[];
   category?: Category;
 }

@@ -26,7 +26,8 @@ const ProductService = {
     limit: number = 5,
     search: string = "",
     isSales?: boolean,
-    categories?: number[]
+    categories?: number[],
+    sortBy?: "newest" | "price_asc" | "price_desc" | "best_selling"
   ) => {
     try {
       const params: any = { page, limit, search };
@@ -40,6 +41,9 @@ const ProductService = {
         params.categories = categories.join(",");
       }
 
+      if (sortBy) {
+        params.sortBy = sortBy;
+      }
       const response = await apiClient.get("/", { params });
 
       return response.data.data;
